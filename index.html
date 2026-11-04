@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MERCADO DA TERRA — Frescos de Maputo</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#E6D6B2;color:#1F1F1F;font-family:'Archivo',sans-serif}
+a{color:inherit}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:#1B5E20;color:#FFF9EA;display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:3px solid #1F1F1F}
+.logo{font-family:'Archivo Black',sans-serif;font-size:20px;letter-spacing:.02em;cursor:pointer;line-height:1}
+.logo small{display:block;font-family:'Archivo',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;color:#D8E8C8}
+nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+nav button,.nbtn{background:#FFF9EA;color:#1B5E20;border:2px solid #1F1F1F;padding:9px 14px;font-weight:800;font-size:14px;cursor:pointer;box-shadow:3px 3px 0 #1F1F1F;font-family:'Archivo',sans-serif}
+nav button:active,.nbtn:active{transform:translate(3px,3px);box-shadow:0 0 0 #1F1F1F}
+main{padding:86px 16px 40px;max-width:1080px;margin:0 auto}
+.view{display:none}.view.on{display:block}
+h1,h2{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:1.05}
+.hero{border:3px solid #1F1F1F;background:#FFF9EA;box-shadow:6px 6px 0 #1F1F1F;padding:22px;margin-bottom:22px}
+.hero h1{font-size:44px;margin:0 0 10px}
+.hero p{font-size:18px;margin:0 0 16px;line-height:1.45}
+.strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+.strip img{width:100%;display:block;border:2px solid #1F1F1F}
+.btn{background:#1B5E20;color:#FFF9EA;border:2px solid #1F1F1F;padding:14px 22px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:4px 4px 0 #1F1F1F;font-family:'Archivo',sans-serif}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 #1F1F1F}
+.btnw{background:#FFF9EA;color:#1F1F1F;border:2px solid #1F1F1F;padding:14px 22px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:4px 4px 0 #1F1F1F;font-family:'Archivo',sans-serif}
+.btnw:active{transform:translate(4px,4px);box-shadow:0 0 0 #1F1F1F}
+.catrow{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.catrow button{background:#FFF9EA;border:2px solid #1F1F1F;padding:10px 16px;font-weight:800;cursor:pointer;font-family:'Archivo',sans-serif}
+.catrow button.sel{background:#1B5E20;color:#FFF9EA}
+.search{width:100%;padding:13px;border:2px solid #1F1F1F;background:#FFF9EA;font-size:16px;font-family:'Archivo',sans-serif;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#FFF9EA;border:2px solid #1F1F1F;box-shadow:5px 5px 0 #1F1F1F;overflow:hidden}
+.card img{width:100%;display:block}
+.card .in{padding:14px}
+.card h3{font-family:'Archivo Black',sans-serif;font-size:19px;margin:0 0 6px;text-transform:uppercase}
+.price{font-size:22px;font-weight:800;color:#1B5E20}
+.mut{color:#5A5240;font-size:14px}
+.panel{background:#FFF9EA;border:2px solid #1F1F1F;box-shadow:5px 5px 0 #1F1F1F;padding:18px;margin-bottom:18px}
+input,select,textarea{width:100%;padding:12px;border:2px solid #1F1F1F;background:#fff;font-size:16px;font-family:'Archivo',sans-serif;margin:6px 0 12px}
+label{font-weight:800;font-size:14px}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{border:2px solid #1F1F1F;padding:10px;text-align:left;font-size:15px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{background:#FFF9EA;border:2px solid #1F1F1F;padding:10px 14px;font-weight:800;cursor:pointer;font-family:'Archivo',sans-serif}
+.tabs button.sel{background:#1B5E20;color:#FFF9EA}
+.msg{border:2px solid #1F1F1F;background:#fff;padding:12px;margin:8px 0}
+.msg.me{background:#DFF0D5}
+.msg .who{font-weight:800;font-size:13px}
+.msg .tk{font-size:12px;color:#5A5240}
+footer{border-top:3px solid #1F1F1F;background:#1B5E20;color:#FFF9EA;padding:22px 16px;text-align:center}
+footer a{color:#FFF9EA}
+@media(max-width:760px){
+  .grid{grid-template-columns:1fr}
+  .strip{grid-template-columns:1fr}
+  .hero h1{font-size:32px}
+  .logo{font-size:16px}
+  nav button{padding:8px 10px;font-size:13px}
+  main{padding-top:118px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" onclick="go('inicio')">MERCADO DA TERRA<small>FRESCOS · MAPUTO</small></div>
+  <nav>
+    <button onclick="go('inicio')">Início</button>
+    <button onclick="go('produtos')">Produtos</button>
+    <button onclick="go('carrinho')">Carrinho (<span id="cartN">0</span>)</button>
+    <button onclick="go('conta')">Conta</button>
+    <button onclick="go('chat')">Chat</button>
+    <button onclick="go('admin')">Gerência</button>
+  </nav>
+</header>
+<main>
+<section class="view" id="v-inicio">
+  <div class="hero">
+    <h1>Do campo para a tua mesa.</h1>
+    <p>Fruta, legumes, pão e mel frescos, todos os dias, com preço à vista. Escolhe, encomenda e levanta ou recebe em casa.</p>
+    <button class="btn" onclick="go('produtos')">Ver produtos →</button>
+    <button class="btnw" onclick="go('conta')">Criar conta</button>
+    <div class="strip">
+      <img src="https://i.pinimg.com/736x/84/d1/c1/84d1c1678876ee3b4a81572c033c2680.jpg" alt="Legumes variados">
+      <img src="https://i.pinimg.com/736x/82/c2/9b/82c29bca7d13febd2aa61b2e1f57f294.jpg" alt="Mangas maduras">
+      <img src="https://i.pinimg.com/736x/87/4e/50/874e503439f586c311392b4a26e01419.jpg" alt="Pão fresco">
+    </div>
+  </div>
+  <div class="panel">
+    <h2 style="margin:0 0 8px">Como funciona</h2>
+    <p style="line-height:1.5;margin:0">1. Cria a tua conta. 2. Junta os frescos ao carrinho. 3. Escolhe entrega ou levantamento. 4. A tua encomenda fica registada e a gerência confirma o pagamento — só depois aparece o recibo.</p>
+  </div>
+  <div class="panel">
+    <h2 style="margin:0 0 8px">Destaques da semana</h2>
+    <div class="grid" id="featGrid"></div>
+  </div>
+</section>
+
+<section class="view" id="v-produtos">
+  <h1 style="font-size:34px;margin:0 0 4px">Produtos</h1>
+  <p class="mut">Preços em meticais, à vista. Tudo o que vês pode ser mudado pela gerência no painel.</p>
+  <input class="search" id="q" placeholder="Pesquisar produto…" oninput="renderProducts()">
+  <div class="catrow" id="catRow"></div>
+  <div class="grid" id="prodGrid"></div>
+</section>
+
+<section class="view" id="v-carrinho">
+  <h1 style="font-size:34px;margin:0 0 12px">Carrinho</h1>
+  <div id="cartBox"></div>
+</section>
+
+<section class="view" id="v-conta">
+  <h1 style="font-size:34px;margin:0 0 12px">Conta</h1>
+  <div class="panel" id="contaBox"></div>
+  <div class="panel" id="myOrders" style="display:none">
+    <h2 style="margin:0 0 10px">Minhas encomendas</h2>
+    <div id="myOrdersList"></div>
+  </div>
+</section>
+
+<section class="view" id="v-admin">
+  <h1 style="font-size:34px;margin:0 0 12px">Gerência</h1>
+  <div id="adminBox"></div>
+</section>
+
+<section class="view" id="v-chat">
+  <h1 style="font-size:34px;margin:0 0 12px">Chat</h1>
+  <div class="panel" id="chatBox"></div>
+</section>
+</main>
+<footer>
+  <div style="font-family:'Archivo Black',sans-serif;font-size:20px">MERCADO DA TERRA</div>
+  <p style="margin:8px 0">Frescos de Maputo, Moçambique</p>
+  <p style="margin:8px 0"><span id="footEmail">ola@mercadodaterra.co.mz</span> · <button class="nbtn" onclick="waOpen()">WhatsApp →</button></p>
+  <p class="mut" style="color:#D8E8C8">© 2026 Mercado da Terra</p>
+</footer>
+<script>
+const PIN=(p)=>'https://i.pinimg.com/'+p;
+const DEFAULT_PRODUCTS=[
+ {id:'p01',name:'Manga madura',cat:'Frutas',price:120,unit:'kg',stock:40,img:PIN('736x/82/c2/9b/82c29bca7d13febd2aa61b2e1f57f294.jpg')},
+ {id:'p02',name:'Banana',cat:'Frutas',price:80,unit:'kg',stock:50,img:PIN('736x/32/5b/d8/325bd855dc1a3916b22dcbc3fdc685c8.jpg')},
+ {id:'p03',name:'Ananás',cat:'Frutas',price:150,unit:'un',stock:30,img:PIN('736x/0d/a2/58/0da2585ed983da14509be014e839de3e.jpg')},
+ {id:'p04',name:'Papaia',cat:'Frutas',price:100,unit:'kg',stock:30,img:PIN('736x/1e/4e/41/1e4e41ad5209cd73d2f2af744fa6a7e8.jpg')},
+ {id:'p05',name:'Tomate',cat:'Legumes',price:90,unit:'kg',stock:50,img:PIN('736x/8d/9f/e3/8d9fe3261cb240a72b20ee6eeb6e29c9.jpg')},
+ {id:'p06',name:'Pimento vermelho',cat:'Legumes',price:180,unit:'kg',stock:25,img:PIN('736x/2b/73/1c/2b731c4f33a2cec384740947fc64d37c.jpg')},
+ {id:'p07',name:'Cenoura',cat:'Legumes',price:110,unit:'kg',stock:40,img:PIN('736x/76/6c/14/766c14393e291f6c5a6a063b0b4d0da7.jpg')},
+ {id:'p08',name:'Cabaz de legumes',cat:'Cabazes',price:450,unit:'cabaz',stock:20,img:PIN('736x/84/d1/c1/84d1c1678876ee3b4a81572c033c2680.jpg')},
+ {id:'p09',name:'Legumes da semana',cat:'Cabazes',price:380,unit:'cabaz',stock:20,img:PIN('1200x/04/a5/09/04a5096cdc8cf616e82280f86c9f162b.jpg')},
+ {id:'p10',name:'Compra fresca',cat:'Cabazes',price:520,unit:'cabaz',stock:15,img:PIN('736x/a6/4f/09/a64f09cffbf83d1d79a3d22a5d5a9206.jpg')},
+ {id:'p11',name:'Sortido de frutas',cat:'Frutas',price:600,unit:'cabaz',stock:15,img:PIN('1200x/d3/af/9d/d3af9d17379141738226e4bbdec07285.jpg')},
+ {id:'p12',name:'Pão da casa',cat:'Pão e Mel',price:90,unit:'un',stock:40,img:PIN('736x/87/4e/50/874e503439f586c311392b4a26e01419.jpg')},
+ {id:'p13',name:'Pão artesanal',cat:'Pão e Mel',price:140,unit:'un',stock:25,img:PIN('1200x/08/0b/e1/080be139351abc023f8db4a20a3e508d.jpg')},
+ {id:'p14',name:'Pão de massa-mãe',cat:'Pão e Mel',price:180,unit:'un',stock:20,img:PIN('736x/d7/b4/93/d7b4939c58c45d88a76a34844c9c9f0e.jpg')},
+ {id:'p15',name:'Mel puro',cat:'Pão e Mel',price:350,unit:'frasco',stock:20,img:PIN('736x/aa/e2/bd/aae2bd9afa81a74bd0e3c11507fdb0aa.jpg')},
+ {id:'p16',name:'Cesto de maçãs e laranjas',cat:'Cabazes',price:400,unit:'cesto',stock:15,img:PIN('1200x/6c/e2/82/6ce28201f3c3431a7f2217fb2e9fae59.jpg')},
+ {id:'p17',name:'Mercado ao ar livre',cat:'Cabazes',price:350,unit:'cabaz',stock:15,img:PIN('736x/0e/18/41/0e18419c2050e1165985acaf281945ba.jpg')},
+ {id:'p18',name:'Banca tropical',cat:'Frutas',price:500,unit:'cabaz',stock:15,img:PIN('1200x/50/26/48/502648c0fb8e40c0e0b0fda5c664b663.jpg')},
+ {id:'p19',name:'Laranjas ao sol',cat:'Frutas',price:130,unit:'kg',stock:40,img:PIN('736x/30/53/b3/3053b3f23d94bdf9adec80ea95f02f7d.jpg')},
+];
+const CATS=['Todos','Frutas','Legumes','Cabazes','Pão e Mel'];
+function load(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v===null||v===undefined?d:v}catch(e){return d}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+if(load('mtd_v','')!=='1'){save('mtd_products',DEFAULT_PRODUCTS);save('mtd_v','1')}
+let products=load('mtd_products',DEFAULT_PRODUCTS);
+let accounts=load('mtd_accounts',[]);
+let session=load('mtd_session',null);
+let cart=load('mtd_cart',[]);
+let orders=load('mtd_orders',[]);
+let chats=load('mtd_chat',[]);
+let settings=load('mtd_settings',{wa:'258840000000',email:'ola@mercadodaterra.co.mz',fees:{Maputo:150,Matola:200,'Províncias':350,'Levantamento':0}});
+let catSel='Todos';
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function go(v){document.querySelectorAll('.view').forEach(e=>e.classList.remove('on'));const el=document.getElementById('v-'+v);if(el)el.classList.add('on');location.hash=v;if(v==='produtos')renderProducts();if(v==='carrinho')renderCart();if(v==='conta')renderConta();if(v==='admin')renderAdmin();if(v==='chat')renderChat();window.scrollTo(0,0)}
+function waOpen(){window.open('https://wa.me/'+settings.wa,'_blank')}
+function cartCount(){document.getElementById('cartN').textContent=cart.reduce((a,c)=>a+c.qty,0)}
+function prodCard(p){
+  return '<div class="card"><img src="'+p.img+'" alt="'+esc(p.name)+'"><div class="in"><h3>'+esc(p.name)+'</h3><div class="price">'+p.price+' MT / '+esc(p.unit)+'</div><div class="mut">Stock: '+p.stock+' · '+esc(p.cat)+'</div><div style="margin-top:12px"><button class="btn" style="width:100%" onclick="addCart(\''+p.id+'\')">Adicionar →</button></div></div></div>';
+}
+function renderProducts(){
+  const q=(document.getElementById('q').value||'').toLowerCase();
+  document.getElementById('catRow').innerHTML=CATS.map(c=>'<button class="'+(c===catSel?'sel':'')+'" onclick="catSel=\''+c+'\';renderProducts()">'+c+'</button>').join('');
+  const list=products.filter(p=>(catSel==='Todos'||p.cat===catSel)&&p.name.toLowerCase().includes(q));
+  document.getElementById('prodGrid').innerHTML=list.length?list.map(prodCard).join(''):'<p>Nenhum produto encontrado.</p>';
+  document.getElementById('featGrid').innerHTML=products.slice(0,4).map(prodCard).join('');
+}
+function addCart(id){
+  if(!session){alert('Cria a tua conta primeiro para poderes encomendar.');go('conta');return}
+  const it=cart.find(c=>c.id===id);if(it)it.qty++;else cart.push({id:id,qty:1});
+  save('mtd_cart',cart);cartCount();alert('Adicionado ao carrinho.');
+}
+function renderCart(){
+  const box=document.getElementById('cartBox');
+  if(!cart.length){box.innerHTML='<div class="panel">O carrinho está vazio. <button class="btn" onclick="go(\'produtos\')">Ver produtos</button></div>';return}
+  let sub=0,rows='';
+  cart.forEach(c=>{const p=products.find(x=>x.id===c.id);if(!p)return;const t=p.price*c.qty;sub+=t;
+    rows+='<tr><td>'+esc(p.name)+'</td><td>'+p.price+' MT</td><td><button onclick="chQty(\''+p.id+'\',-1)">−</button> '+c.qty+' <button onclick="chQty(\''+p.id+'\',1)">+</button></td><td>'+t+' MT</td></tr>';});
+  box.innerHTML='<div class="panel"><table><tr><th>Produto</th><th>Preço</th><th>Qtd</th><th>Total</th></tr>'+rows+'</table>'
+    +'<p>Subtotal: <b>'+sub+' MT</b></p>'
+    +'<label>Entrega</label><select id="feeSel">'+Object.keys(settings.fees).map(k=>'<option value="'+k+'">'+k+' — '+settings.fees[k]+' MT</option>').join('')+'</select>'
+    +'<p>Total com entrega: <b id="grandTotal"></b></p>'
+    +'<button class="btn" onclick="checkout()">Finalizar encomenda →</button> '
+    +'<button class="btnw" onclick="cart=[];save(\'mtd_cart\',cart);cartCount();renderCart()">Limpar</button></div>';
+  const upd=()=>{const f=settings.fees[document.getElementById('feeSel').value]||0;document.getElementById('grandTotal').textContent=(sub+f)+' MT';};
+  document.getElementById('feeSel').onchange=upd;upd();
+}
+function chQty(id,d){const it=cart.find(c=>c.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(c=>c.id!==id);save('mtd_cart',cart);cartCount();renderCart()}
+function checkout(){
+  if(!session){alert('Cria a tua conta primeiro.');go('conta');return}
+  const feeKey=document.getElementById('feeSel').value,fee=settings.fees[feeKey]||0;
+  let sub=0;const items=cart.map(c=>{const p=products.find(x=>x.id===c.id);sub+=p.price*c.qty;return {id:p.id,name:p.name,price:p.price,qty:c.qty}});
+  const id='MTD-'+Date.now().toString(36).toUpperCase();
+  orders.push({id:id,email:session,items:items,sub:sub,fee:fee,feeKey:feeKey,total:sub+fee,status:'aguarda pagamento',date:new Date().toLocaleString('pt-PT')});
+  save('mtd_orders',orders);cart=[];save('mtd_cart',cart);cartCount();
+  alert('Encomenda '+id+' registada. Fica a aguardar pagamento — a gerência confirma e o recibo aparece em Minhas encomendas.');
+  go('conta');
+}
+
+function renderConta(){
+  const box=document.getElementById('contaBox'),mo=document.getElementById('myOrders');
+  document.getElementById('footEmail').textContent=settings.email;
+  if(!session){
+    box.innerHTML='<label>Email</label><input id="em" type="email" placeholder="o teu email"><label>Palavra-passe</label><input id="pw" type="password" placeholder="palavra-passe">'
+      +'<button class="btn" onclick="doConta(1)">Criar conta</button> <button class="btnw" onclick="doConta(0)">Entrar</button>'
+      +'<p class="mut">A primeira conta criada fica com a gerência.</p>';
+    mo.style.display='none';return;
+  }
+  const isAdmin=accounts.length&&accounts[0].email===session;
+  box.innerHTML='<p>Estás dentro como <b>'+esc(session)+'</b>'+(isAdmin?' (gerência)':'')+'</p>'
+    +'<button class="btnw" onclick="go(\'chat\')">Chat →</button> '
+    +'<button class="btnw" onclick="session=null;save(\'mtd_session\',null);renderConta()">Sair</button>';
+  mo.style.display='block';
+  const mine=orders.filter(o=>o.email===session);
+  document.getElementById('myOrdersList').innerHTML=mine.length?mine.map(o=>{
+    let r='<div class="msg"><b>'+o.id+'</b> · '+o.date+' · '+o.total+' MT · '+esc(o.status)+' ('+esc(o.feeKey)+')<br>'+o.items.map(i=>esc(i.name)+' × '+i.qty).join(', ');
+    if(o.status==='pago')r+='<br><b>Recibo:</b> Pagamento de '+o.total+' MT confirmado. Obrigado pela tua compra!';
+    return r+'</div>';}).join(''):'<p>Ainda não tens encomendas.</p>';
+}
+async function doConta(create){
+  const em=document.getElementById('em').value.trim().toLowerCase(),pw=document.getElementById('pw').value;
+  if(!em||!pw){alert('Preenche email e palavra-passe.');return}
+  const h=await sha(pw);
+  if(create){
+    if(accounts.find(a=>a.email===em)){alert('Já existe uma conta com esse email. Entra.');return}
+    accounts.push({email:em,pass:h});save('mtd_accounts',accounts);
+  }else{
+    if(!accounts.find(a=>a.email===em&&a.pass===h)){alert('Email ou palavra-passe errados.');return}
+  }
+  session=em;save('mtd_session',em);renderConta();
+}
+let adminTab='produtos';
+function renderAdmin(){
+  const box=document.getElementById('adminBox');
+  if(!session||!accounts.length||accounts[0].email!==session){
+    box.innerHTML='<div class="panel">Área reservada à gerência. Cria a primeira conta para ficares com a gerência, ou entra com ela.</div>';return;
+  }
+  let body='';
+  if(adminTab==='produtos'){
+    body='<h3>Produtos</h3>'+products.map(p=>'<div class="msg"><b>'+esc(p.name)+'</b> — '+p.price+' MT / '+esc(p.unit)+' · stock '+p.stock+' <button onclick="delProd(\''+p.id+'\')">Apagar</button></div>').join('')
+      +'<h3>Adicionar / editar produto</h3><label>Nome</label><input id="np_name"><label>Categoria</label><select id="np_cat">'+CATS.slice(1).map(c=>'<option>'+c+'</option>').join('')+'</select><label>Preço (MT)</label><input id="np_price" type="number"><label>Unidade</label><input id="np_unit" placeholder="kg, un, cabaz…"><label>Stock</label><input id="np_stock" type="number"><label>Foto (ficheiro)</label><input id="np_file" type="file" accept="image/*"><button class="btn" onclick="addProd()">Guardar produto</button><p class="mut">A foto é sempre por ficheiro, nunca por link.</p>';
+  }else if(adminTab==='encomendas'){
+    body='<h3>Encomendas</h3>'+(orders.length?orders.map(o=>'<div class="msg"><b>'+o.id+'</b> · '+esc(o.email)+' · '+o.total+' MT · '+esc(o.status)
+      +(o.status!=='pago'?'<br><button onclick="markPaid(\''+o.id+'\')">Marcar pago → recibo</button>':'')
+      +' <button onclick="delOrder(\''+o.id+'\')">Apagar</button></div>').join(''):'<p>Sem encomendas.</p>');
+  }else if(adminTab==='conversas'){
+    const emails=[...new Set(chats.map(c=>c.email))];
+    body='<h3>Conversas</h3>'+(emails.length?emails.map(e=>{
+      const th=chats.filter(c=>c.email===e);const un=th.filter(c=>c.from==='user'&&!c.seenByAdmin).length;
+      return '<div class="msg"><b>'+esc(e)+'</b> · '+th.length+' mensagens'+(un?' · <b>'+un+' novas</b>':'')
+      +'<div id="thr-'+btoa(e).replace(/=/g,'')+'">'+th.map(m=>'<div>'+esc(m.from)+': '+esc(m.text||'(anexo)')+'</div>').join('')+'</div>'
+      +'<input id="rep-'+btoa(e).replace(/=/g,'')+'" placeholder="Responder…"><button onclick="adminReply(\''+e+'\')">Enviar</button></div>';}).join(''):'<p>Sem conversas.</p>');
+  }else{
+    body='<h3>Definições</h3><label>WhatsApp (número com indicativo)</label><input id="st_wa" value="'+esc(settings.wa)+'"><label>Email do site</label><input id="st_em" value="'+esc(settings.email)+'"><label>Entrega Maputo (MT)</label><input id="st_f1" type="number" value="'+settings.fees.Maputo+'"><label>Entrega Matola (MT)</label><input id="st_f2" type="number" value="'+settings.fees.Matola+'"><label>Entrega Províncias (MT)</label><input id="st_f3" type="number" value="'+settings.fees['Províncias']+'"><button class="btn" onclick="saveSettings()">Guardar</button>';
+  }
+  box.innerHTML='<div class="tabs"><button class="'+(adminTab==='produtos'?'sel':'')+'" onclick="adminTab=\'produtos\';renderAdmin()">Produtos</button><button class="'+(adminTab==='encomendas'?'sel':'')+'" onclick="adminTab=\'encomendas\';renderAdmin()">Encomendas</button><button class="'+(adminTab==='conversas'?'sel':'')+'" onclick="adminTab=\'conversas\';renderAdmin()">Conversas</button><button class="'+(adminTab==='definicoes'?'sel':'')+'" onclick="adminTab=\'definicoes\';renderAdmin()">Definições</button></div><div class="panel">'+body+'</div>';
+}
+function delProd(id){products=products.filter(p=>p.id!==id);save('mtd_products',products);renderAdmin();renderProducts()}
+function addProd(){
+  const name=document.getElementById('np_name').value.trim(),price=parseInt(document.getElementById('np_price').value||'0',10),
+    unit=document.getElementById('np_unit').value.trim()||'un',stock=parseInt(document.getElementById('np_stock').value||'0',10),
+    cat=document.getElementById('np_cat').value,f=document.getElementById('np_file').files[0];
+  if(!name||!price){alert('Nome e preço são obrigatórios.');return}
+  const done=(img)=>{const ex=products.find(p=>p.name.toLowerCase()===name.toLowerCase());
+    if(ex){ex.price=price;ex.unit=unit;ex.stock=stock;ex.cat=cat;if(img)ex.img=img;}
+    else products.push({id:'p'+Date.now().toString(36),name:name,cat:cat,price:price,unit:unit,stock:stock,img:img||products[0].img});
+    save('mtd_products',products);renderAdmin();renderProducts();};
+  if(f){if(f.size>10*1024*1024){alert('A foto é demasiado grande (máx. 10 MB).');return}const r=new FileReader();r.onload=()=>done(r.result);r.readAsDataURL(f);}
+  else done(null);
+}
+function markPaid(id){const o=orders.find(x=>x.id===id);if(!o)return;o.status='pago';
+  o.items.forEach(i=>{const p=products.find(x=>x.id===i.id);if(p)p.stock=Math.max(0,p.stock-i.qty)});
+  save('mtd_orders',orders);save('mtd_products',products);renderAdmin();}
+function delOrder(id){orders=orders.filter(o=>o.id!==id);save('mtd_orders',orders);renderAdmin()}
+function adminReply(email){
+  const key=btoa(email).replace(/=/g,'');const inp=document.getElementById('rep-'+key);const t=inp.value.trim();if(!t)return;
+  chats.push({from:'admin',email:email,text:t,ts:Date.now(),seenByUser:false});
+  chats.filter(c=>c.email===email&&c.from==='user').forEach(c=>c.seenByAdmin=true);
+  save('mtd_chat',chats);renderAdmin();
+}
+function saveSettings(){
+  settings.wa=document.getElementById('st_wa').value.trim();
+  settings.email=document.getElementById('st_em').value.trim();
+  settings.fees.Maputo=parseInt(document.getElementById('st_f1').value||'0',10);
+  settings.fees.Matola=parseInt(document.getElementById('st_f2').value||'0',10);
+  settings.fees['Províncias']=parseInt(document.getElementById('st_f3').value||'0',10);
+  save('mtd_settings',settings);document.getElementById('footEmail').textContent=settings.email;alert('Definições guardadas.');
+}
+function renderChat(){
+  const box=document.getElementById('chatBox');
+  if(!session){box.innerHTML='<p>Cria a tua conta primeiro para usares o chat.</p><button class="btn" onclick="go(\'conta\')">Ir para a conta →</button>';return}
+  chats.filter(c=>c.email===session&&c.from==='admin').forEach(c=>c.seenByUser=true);
+  save('mtd_chat',chats);
+  const mine=chats.filter(c=>c.email===session);
+  box.innerHTML='<div id="chatMsgs">'+mine.map(m=>'<div class="msg '+(m.from==='user'?'me':'')+'"><span class="who">'+(m.from==='user'?'Tu':'Gerência')+'</span><br>'
+    +(m.file?'<a href="'+m.file+'" target="_blank">Ver anexo</a><br>':'')+(m.audio?'<audio controls src="'+m.audio+'"></audio><br>':'')+esc(m.text||'')
+    +(m.from==='user'?'<br><span class="tk">'+(m.seenByAdmin?'✓✓':'✓')+'</span>':'')+'</div>').join('')+'</div>'
+    +'<input id="chatIn" placeholder="Escreve a tua mensagem…">'
+    +'<input id="chatFile" type="file" accept="image/*,audio/*,.pdf">'
+    +'<button class="btn" onclick="sendChat()">Enviar</button> '
+    +'<button class="btnw" id="recBtn" onclick="toggleRec()">● Gravar</button>';
+}
+let rec=null,recChunks=[];
+function toggleRec(){
+  const btn=document.getElementById('recBtn');
+  if(rec){rec.stop();return}
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    rec=new MediaRecorder(stream);recChunks=[];
+    rec.ondataavailable=e=>recChunks.push(e.data);
+    rec.onstop=()=>{const blob=new Blob(recChunks,{type:'audio/webm'});const r=new FileReader();r.onload=()=>{chats.push({from:'user',email:session,text:'',audio:r.result,ts:Date.now(),seenByAdmin:false});save('mtd_chat',chats);renderChat()};r.readAsDataURL(blob);rec=null;btn.textContent='● Gravar';};
+    rec.start();btn.textContent='■ Parar';
+  }).catch(()=>alert('Não foi possível gravar áudio neste dispositivo.'));
+}
+function sendChat(){
+  const t=document.getElementById('chatIn').value.trim(),f=document.getElementById('chatFile').files[0];
+  if(!t&&!f){alert('Escreve uma mensagem ou junta um ficheiro.');return}
+  const done=(file)=>{chats.push({from:'user',email:session,text:t,file:file||null,ts:Date.now(),seenByAdmin:false});save('mtd_chat',chats);renderChat();};
+  if(f){if(f.size>5*1024*1024){alert('O ficheiro é demasiado grande (máx. 5 MB).');return}const r=new FileReader();r.onload=()=>done(r.result);r.readAsDataURL(f);}
+  else done(null);
+}
+cartCount();
+document.getElementById('footEmail').textContent=settings.email;
+const start=(location.hash||'#inicio').replace('#','');
+go(['inicio','produtos','carrinho','conta','admin','chat'].includes(start)?start:'inicio');
+</script>
+</body>
+</html>
